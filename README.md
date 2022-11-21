@@ -3,6 +3,7 @@ Messing with math and python to create cool art
 
 ![alt text](Images/outside_star.jpg)
 
+![](Images/cool_star.jpg)
 
 ![](Images/Koch_3-gon.jpg)
 
