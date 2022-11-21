@@ -81,5 +81,5 @@ class StarViewer(ImageViewer):
 
 
 if __name__ == "__main__":
-    viewer = StarViewer()
+    viewer = SnowflakeImageViewer()
     viewer.run()
