@@ -37,7 +37,7 @@ class ImageViewer(ABC):
         self.window.mainloop()
 
 
-class SnowflakeImageViewer(ImageViewer):
+class SnowflakeViewer(ImageViewer):
     def __init__(self):
         super().__init__()
         self.window.title("Koch's Snowflakes")
@@ -48,7 +48,7 @@ class SnowflakeImageViewer(ImageViewer):
 
     def populate_image_list(self):
         for i in range(3, 21):
-            img = Image.open("Images/Koch_" + str(i) + "-gon.jpg")
+            img = Image.open("Images/Koch_Fractals/Koch_" + str(i) + "-gon.jpg")
             img.thumbnail((1000, 700))
             img = ImageTk.PhotoImage(img)
             self.img_list.append(img)
@@ -70,8 +70,29 @@ class StarViewer(ImageViewer):
         self.update_image()
 
     def populate_image_list(self):
-        for file_name in ["Images/cool_star.jpg", "Images/inside_star.jpg", "Images/outside_star.jpg"]:
-            img = Image.open(file_name)
+        for file_name in ["cool_star", "inside_star", "outside_star"]:
+            img = Image.open("Images/Stars/" + file_name + ".jpg")
+            img.thumbnail((1000, 700))
+            img = ImageTk.PhotoImage(img)
+            self.img_list.append(img)
+
+    def image_caption(self) -> str:
+        return self.captions[self.num]
+
+
+class ChaosViewer(ImageViewer):
+    def __init__(self):
+        self.captions = []
+        super().__init__()
+        self.update_image()
+
+    def populate_image_list(self):
+        files = ["Equilateral_Triangle", "Sierpinski_Triangle", "Sierpinski_Chaos", "Square_No_Repeat",
+                 "Square_No_Clockwise", "Square_No_Counter_Clockwise", "Square_No_Opposite", "Pentagon",
+                 "Pentagon_Phi_Jump", "Pentagon_No_Repeats", "Pentagon_No_Clockwise", "Pentagon_No_Counter_Clockwise"]
+        for file_name in files:
+            self.captions.append(file_name.replace("_", " "))
+            img = Image.open("Images/Chaos_Game/" + file_name + ".jpg")
             img.thumbnail((1000, 700))
             img = ImageTk.PhotoImage(img)
             self.img_list.append(img)
@@ -81,5 +102,5 @@ class StarViewer(ImageViewer):
 
 
 if __name__ == "__main__":
-    viewer = SnowflakeImageViewer()
+    viewer = ChaosViewer()
     viewer.run()
