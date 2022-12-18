@@ -14,9 +14,9 @@ screen.setup(WIDTH, HEIGHT)
 screen.setworldcoordinates(-X_MAX, - Y_MAX, X_MAX, Y_MAX)
 
 shape("turtle")
-hideturtle()
+# hideturtle()
 speed(8)
-tracer(0, 0)
+# tracer(0, 0)
 
 # Star Parameters
 STEP = 0.1
@@ -45,13 +45,13 @@ Quad = [(-X_MAX * 9/10, -Y_MAX * 9/10), (X_MAX * 9/10, -Y_MAX * 9/10),
 from_trap = triangle_from_trapezoid(Quad)
 
 
-ATTRACTIVE = regular_polygon(8, X_MAX * 9/10, start_angle=0)
+ATTRACTIVE = EQ_TRIANGLE
 GAME = ChaosGame
 rule = "no repeats"
 ITERATIONS = 100000
 phi = (1 + math.sqrt(5)) / 2
 # cool = n/(n+3)
-JUMP = .6
+JUMP = .5
 
 # Image Saving Parameters
 SAVE_IMAGE = False
@@ -152,7 +152,7 @@ def chaos_game(attractive_points, iterations=5000, draw_triangle=False):
     penup()
     for i in range(iterations):
         goto(points[i])
-        dot(1)
+        dot(3)
     if len(attractive_points) == 3 and draw_triangle:
         color("red")
         turtle.pensize(2)

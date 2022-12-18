@@ -1,3 +1,4 @@
+import os
 from abc import abstractmethod, ABC
 from tkinter import *
 from PIL import ImageTk, Image
@@ -87,12 +88,12 @@ class ChaosViewer(ImageViewer):
         self.update_image()
 
     def populate_image_list(self):
-        files = ["Equilateral_Triangle", "Sierpinski_Triangle", "Sierpinski_Chaos", "Square_No_Repeat",
-                 "Square_No_Clockwise", "Square_No_Counter_Clockwise", "Square_No_Opposite", "Pentagon",
-                 "Pentagon_Phi_Jump", "Pentagon_No_Repeats", "Pentagon_No_Clockwise", "Pentagon_No_Counter_Clockwise"]
+        files = os.listdir("Images/Chaos_Game")
         for file_name in files:
+            if not file_name.endswith(".jpg"):
+                continue
             self.captions.append(file_name.replace("_", " "))
-            img = Image.open("Images/Chaos_Game/" + file_name + ".jpg")
+            img = Image.open("Images/Chaos_Game/" + file_name)
             img.thumbnail((1000, 700))
             img = ImageTk.PhotoImage(img)
             self.img_list.append(img)

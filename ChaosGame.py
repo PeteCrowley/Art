@@ -8,13 +8,14 @@ class ChaosGame:
     """
     Polygons should be defined in an ordered list going counter-clockwise
     """
-    def __init__(self, attractive_points):
+    def __init__(self, attractive_points, start_polygon=None, jump=1/2):
+        self.start_polygon = attractive_points if start_polygon is None else start_polygon
         self.attractive_points = attractive_points
         self.position = self.x, self.y = self.choose_start_position()
-        self.jump = 1/2
+        self.jump = jump
 
     def choose_start_position(self):
-        return point_in_polygon(self.attractive_points)
+        return point_in_polygon(self.start_polygon)
 
     def move(self):
         attractive_x, attractive_y = random.choice(self.attractive_points)
@@ -29,8 +30,8 @@ class ChaosGame:
 
 
 class ChaosGameSpecialRule(ChaosGame):
-    def __init__(self, attractive_points, rule="no repeat"):
-        super().__init__(attractive_points)
+    def __init__(self, attractive_points, start_polygon=None, jump=1/2, rule="no repeat"):
+        super().__init__(attractive_points, start_polygon=start_polygon, jump=jump)
         self.legal_attractive_points = self.attractive_points
         if rule == "no repeats":
             self.r = 0
